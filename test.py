@@ -275,8 +275,7 @@ QUESTIONS = [
 ]
 
 # პატარა კონტროლი (თუ ვინმემ შეცვალა სია და 200 აღარ გამოვიდა)
-if len(QUESTIONS) != 200:
-    st.warning(f"ყურადღება: კითხვების რაოდენობა ახლა არის {len(QUESTIONS)} (სასურველია 200).")
+
 
 # ----------------------------
 # ფუნქციები
@@ -382,11 +381,11 @@ with col2:
 with col3:
     st.metric("ჩასაბარებლად", f"{PASS_SCORE}/{TOTAL_QUESTIONS}")
 
-colA, col attaching = st.columns(2)
+colA, colB = st.columns(2)
 with colA:
     tl = total_left()
     st.metric("დარჩენილი დრო (მთლიანი)", f"{tl//60} წთ {tl%60} წმ")
-with col attaching:
+with colB:
     st.metric("დარჩენილი დრო (კითხვაზე)", f"{q_left()} წმ")
 
 st.progress(st.session_state.current / TOTAL_QUESTIONS)
@@ -439,7 +438,7 @@ else:
         st.write("გირჩევ, გადაამეორო თემები და შემდეგ სცადო თავიდან.")
 
     colx, coly = st.columns(2)
-    with colx:
+    with colx: 
         if st.button("ახალი ტესტი 🔄", use_container_width=True):
             start_quiz(st.session_state.student)
             st.session_state.started = True
